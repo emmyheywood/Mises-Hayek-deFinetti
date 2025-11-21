@@ -1,0 +1,100 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Do You Even Quarto, Bruh?\"\n",
+        "author: \n",
+        "  - name: \"Author 1\"\n",
+        "    affiliation: \"University of Whatever\"\n",
+        "    email: \"author1@example.edu\"\n",
+        "  - name: \"Author 2\"\n",
+        "    affiliation: \"University of Whatever\"\n",
+        "    email: \"author2@example.edu\"\n",
+        "date: \"November 26, 2050\"\n",
+        "abstract: | \n",
+        "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n",
+        "keywords:\n",
+        "  - \"Keyword 1\"\n",
+        "  - \"Keyword 2\"\n",
+        "bibliography: references.bib\n",
+        "format: \n",
+        "  jasa-pdf: \n",
+        "    keep-tex: true\n",
+        "    cite-method: natbib\n",
+        "    journal:\n",
+        "      blinded: false\n",
+        "execute:\n",
+        "  echo: false\n",
+        "---"
+      ],
+      "id": "18832914"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "message": false
+      },
+      "source": [
+        "#| label: setup\n",
+        "#| warning: false\n",
+        "\n",
+        "import os\n",
+        "import polars as pl\n",
+        "import seaborn.objects as so"
+      ],
+      "id": "setup",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Introduction {#sec-intro}\n",
+        "\n",
+        "We can can include regular single-paper citations using `[@citation]` like [@Allenby:1998] or multiple-paper citations using `[@citation; @citation]` like [@Allenby:1998; @Watanabe:2010], in-line citations using `@citation` like @Allenby:1998, or citations without the Author using `[-@citation]` like [-@Allenby:1998].\n",
+        "\n",
+        "Additionally, each section and sub-section can be referenced by adding a `{#sec-label}` label to any heading and referencing `@sec-label`. For example, `## Introduction {#sec-intro}` would be referenced as `@sec-intro` like @sec-intro (note that the `seg-` prefix is required).\n",
+        "\n",
+        "## Model Specification {#sec-model}\n",
+        "\n",
+        "We can include math using LaTeX within the `$` or `$$` syntax. For example, `$y = \\beta x + \\epsilon$` produces $y = \\beta x + \\epsilon$ and\n",
+        "$$\n",
+        "Pr(y_{n,h}=p|\\beta_n) = \\frac{\\exp{(x_{p,h}'\\beta_n)}}{\\sum_{p=1}^P\\exp{(x_{p,h}'\\beta_n)}}\n",
+        "$$ {#eq-mnl}\n",
+        "\n",
+        "\\noindent is produced using the `$$` syntax. The equation has to be labeled with `{#eq-label}` directly following the closing `$$` so it can be referenced with `@eq-label`. For example, the above equation `{#eq-mnl}` would be referenced as `@eq-mnl` like @eq-mnl (note that the `eq-` prefix is required).\n",
+        "\n",
+        "## Empirical Application {#sec-data}\n",
+        "\n",
+        "Using Quarto means we can use Markdown, Python, and LaTeX (along with other languages) interchangeably.\n",
+        "\n",
+        "We can include tables and figures. If Markdown `![]()` syntax is used to include figures, the label would be `{#fig-slug}` and the figure would be referenced with `@fig-slug` (note that the `fig-` prefix is required).\n",
+        "\n",
+        "## Results {#sec-results}\n",
+        "\n",
+        "Our tables and figures can be dynamically generated.\n",
+        "\n",
+        "## Conclusion {#sec-concl}\n",
+        "\n",
+        "One final note. While the bibliography will be placed automatically at the end of the paper, we may have a few additional citations like R packages and other software to include that aren't explicitly cited elsewhere that we can include using the LaTeX syntax `\\nocite{author:year, author:year}` (since we are using `natbib` for citations) as is demonstrated in the following bibliography.\n",
+        "\n",
+        "\\nocite{bayesm:2018, loo:2018}"
+      ],
+      "id": "19280acb"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "option-env",
+      "language": "python",
+      "display_name": "Python (Option Pricing)",
+      "path": "/home/emmyheywood/.local/share/jupyter/kernels/option-env"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
